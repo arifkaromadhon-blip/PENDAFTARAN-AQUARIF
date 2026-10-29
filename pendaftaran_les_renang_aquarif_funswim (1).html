@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Les Renang Aquarif Funswim</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ocean: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .wave-bg { background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); }
+        .program-card { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .program-card:hover { transform: translateY(-3px); }
+        .program-card.selected {
+            border-color: #0284c7;
+            background-color: #f0f9ff;
+            box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.25);
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER / BANNER -->
+    <header class="wave-bg text-white pt-8 pb-16 px-4 sm:px-6 relative overflow-hidden rounded-b-[2.5rem] shadow-xl">
+        <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 mb-4 shadow-inner">
+                <span class="text-4xl">🏊</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-3 leading-tight">
+                PENDAFTARAN LES RENANG AQUARIF FUNSWIM
+            </h1>
+            <p class="text-sky-100 text-xs sm:text-sm md:text-base font-normal max-w-2xl mx-auto leading-relaxed mb-6">
+                Belajar renang lebih percaya diri, menyenangkan, dan sesuai kemampuan. Pilih program terbaik untuk putra-putri Anda dan daftarkan sekarang!
+            </p>
+            <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-xs sm:text-sm font-medium text-sky-50 shadow-sm">
+                <i class="fa-solid fa-location-dot text-red-400"></i>
+                <span>Kolam Renang Villa Madina, Tajur Halang, Bogor</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 -mt-8 relative z-20 mb-12 w-full">
+        <form id="registrationForm" onsubmit="handleFormSubmit(event)" class="glass-card rounded-3xl p-5 sm:p-8 shadow-xl border border-slate-100 space-y-8">
+            
+            <!-- STEP 1: PROGRAM -->
+            <div>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="flex items-center justify-center w-7 h-7 bg-ocean-500 text-white rounded-full font-bold text-sm">1</span>
+                    <h2 class="text-lg font-bold text-slate-900">Pilih Program Les Renang</h2>
+                </div>
+                <p class="text-xs text-slate-500 mb-4">Ketuk salah satu kartu program di bawah ini:</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Group Class -->
+                    <div onclick="selectProgram('group', 'Group Class')" id="card-group" class="program-card cursor-pointer border-2 border-slate-200 rounded-2xl p-4 flex flex-col justify-between relative bg-white">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 text-[11px] font-semibold bg-emerald-100 text-emerald-800 rounded-lg mb-2">Paling Hemat</span>
+                            <h3 class="font-bold text-slate-900 text-base">GROUP CLASS</h3>
+                            <div class="text-ocean-600 font-extrabold text-lg mt-1 mb-3">Rp160.000 <span class="text-xs font-normal text-slate-500">/ orang</span></div>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-3">
+                                <li><i class="fa-solid fa-calendar-check text-ocean-500 mr-1.5"></i><strong>4x Pertemuan</strong></li>
+                                <li><i class="fa-solid fa-users text-ocean-500 mr-1.5"></i>Min 6 & Max 10 peserta/kelompok</li>
+                                <li><i class="fa-solid fa-clock text-ocean-500 mr-1.5"></i>Sabtu / Minggu</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-50 border border-amber-200 rounded-lg p-2 text-[11px] text-amber-800">
+                            ⚠️ Pendaftaran kelompok menyesuaikan kuota minimum & maksimum.
+                        </div>
+                    </div>
+
+                    <!-- Regular Class -->
+                    <div onclick="selectProgram('regular', 'Regular Class')" id="card-regular" class="program-card cursor-pointer border-2 border-slate-200 rounded-2xl p-4 flex flex-col justify-between relative bg-white">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 text-[11px] font-semibold bg-sky-100 text-sky-800 rounded-lg mb-2">Favorit Orang Tua</span>
+                            <h3 class="font-bold text-slate-900 text-base">REGULAR CLASS</h3>
+                            <div class="text-ocean-600 font-extrabold text-lg mt-1 mb-3">Rp200.000 <span class="text-xs font-normal text-slate-500">/ orang</span></div>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-3">
+                                <li><i class="fa-solid fa-calendar-check text-ocean-500 mr-1.5"></i><strong>4x Pertemuan</strong></li>
+                                <li><i class="fa-solid fa-users text-ocean-500 mr-1.5"></i>Min 3 & Max 5 peserta/kelompok</li>
+                                <li><i class="fa-solid fa-clock text-ocean-500 mr-1.5"></i>Sabtu / Minggu</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Semi Private -->
+                    <div onclick="selectProgram('semi_private', 'Semi Private')" id="card-semi_private" class="program-card cursor-pointer border-2 border-slate-200 rounded-2xl p-4 flex flex-col justify-between relative bg-white">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 text-[11px] font-semibold bg-purple-100 text-purple-800 rounded-lg mb-2">Fokus & Efektif</span>
+                            <h3 class="font-bold text-slate-900 text-base">SEMI PRIVATE</h3>
+                            <div class="text-ocean-600 font-extrabold text-lg mt-1 mb-3">Rp500.000 <span class="text-xs font-normal text-slate-500">/ orang</span></div>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-3">
+                                <li><i class="fa-solid fa-user-group text-ocean-500 mr-1.5"></i>Maksimal <strong>2 peserta</strong></li>
+                                <li><i class="fa-solid fa-star text-ocean-500 mr-1.5"></i>Pendampingan intensif</li>
+                                <li><i class="fa-solid fa-comments text-ocean-500 mr-1.5"></i>Jadwal dikonfirmasi admin</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Private Class -->
+                    <div onclick="selectProgram('private', 'Private Class')" id="card-private" class="program-card cursor-pointer border-2 border-slate-200 rounded-2xl p-4 flex flex-col justify-between relative bg-white">
+                        <div>
+                            <span class="inline-block px-2.5 py-1 text-[11px] font-semibold bg-indigo-100 text-indigo-800 rounded-lg mb-2">Eksklusif 1-on-1</span>
+                            <h3 class="font-bold text-slate-900 text-base">PRIVATE CLASS</h3>
+                            <div class="text-ocean-600 font-extrabold text-lg mt-1 mb-3">Rp800.000 <span class="text-xs font-normal text-slate-500">/ 1 peserta</span></div>
+                            <ul class="text-xs text-slate-600 space-y-2 mb-3">
+                                <li><i class="fa-solid fa-user text-ocean-500 mr-1.5"></i><strong>1 Peserta</strong> dalam 1 sesi</li>
+                                <li><i class="fa-solid fa-bullseye text-ocean-500 mr-1.5"></i>Disesuaikan kemampuan</li>
+                                <li><i class="fa-solid fa-comments text-ocean-500 mr-1.5"></i>Jadwal dikonfirmasi admin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="selectedProgram" name="program" required>
+                <p id="programError" class="text-red-500 text-xs mt-2 hidden">⚠️ Silakan pilih salah satu program les renang di atas.</p>
+            </div>
+
+            <!-- STEP 2: DATA DIRI -->
+            <div class="space-y-4 pt-4 border-t border-slate-100">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="flex items-center justify-center w-7 h-7 bg-ocean-500 text-white rounded-full font-bold text-sm">2</span>
+                    <h2 class="text-lg font-bold text-slate-900">Data Peserta & Orang Tua</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Nama Lengkap Peserta <span class="text-red-500">*</span></label>
+                        <input type="text" id="namaPeserta" required placeholder="Contoh: Muhammad Rizky" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ocean-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Usia Peserta <span class="text-red-500">*</span></label>
+                        <input type="text" id="usiaPeserta" required placeholder="Contoh: 7 Tahun" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ocean-500 text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Nama Orang Tua / Wali <span class="text-red-500">*</span></label>
+                        <input type="text" id="namaOrangTua" required placeholder="Contoh: Bapak Hendra" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ocean-500 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Nomor WhatsApp Aktif <span class="text-red-500">*</span></label>
+                        <input type="tel" id="whatsapp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ocean-500 text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">Kemampuan Berenang Peserta <span class="text-red-500">*</span></label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="kemampuan" value="Belum bisa berenang" required class="text-ocean-600 focus:ring-ocean-500">
+                            <span class="text-xs font-medium text-slate-700">Belum bisa berenang</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="kemampuan" value="Pemula" class="text-ocean-600 focus:ring-ocean-500">
+                            <span class="text-xs font-medium text-slate-700">Pemula</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50">
+                            <input type="radio" name="kemampuan" value="Sudah bisa berenang" class="text-ocean-600 focus:ring-ocean-500">
+                            <span class="text-xs font-medium text-slate-700">Sudah bisa berenang</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3: SESI & KELOMPOK (DINAMIS) -->
+            <div id="scheduleSection" class="space-y-4 pt-4 border-t border-slate-100">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="flex items-center justify-center w-7 h-7 bg-ocean-500 text-white rounded-full font-bold text-sm">3</span>
+                    <h2 class="text-lg font-bold text-slate-900">Pilihan Hari, Sesi & Kelompok</h2>
+                </div>
+
+                <div id="groupFields" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Sesi Dropdown -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Pilihan Hari & Sesi Latihan <span class="text-red-500">*</span></label>
+                        <select id="sesiLatihan" onchange="toggleManualSesi(this.value)" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ocean-500 text-sm bg-white">
+                            <option value="">-- Pilih Hari & Sesi --</option>
+                            <option value="Sabtu — Sesi 1 (08.00–09.20)">Sabtu — Sesi 1 (08.00–09.20)</option>
+                            <option value="Sabtu — Sesi 2 (09.30–10.50)">Sabtu — Sesi 2 (09.30–10.50)</option>
+                            <option value="Minggu — Sesi 1 (08.00–09.20)">Minggu — Sesi 1 (08.00–09.20)</option>
+                            <option value="Minggu — Sesi 2 (09.30–10.50)">Minggu — Sesi 2 (09.30–10.50)</option>
+                            <option value="Lainnya">Lainnya (Tulis Manual)</option>
+                        </select>
+                        <input type="text" id="manualSesiInput" placeholder="Tuliskan jadwal pilihan Anda di sini..." class="hidden mt-2 w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-ocean-500">
+                    </div>
+
+                    <!-- Kelompok Dropdown -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Pilihan Kelompok / Grup <span class="text-red-500">*</span></label>
+                        <select id="kelompokLatihan" onchange="toggleManualKelompok(this.value)" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ocean-500 text-sm bg-white">
+                            <option value="">-- Pilih Kelompok --</option>
+                            <option value="Kelompok A">Kelompok A</option>
+                            <option value="Kelompok B">Kelompok B</option>
+                            <option value="Kelompok C">Kelompok C</option>
+                            <option value="Gabung Kelompok yang Ada / Belum Ada Kelompok">Gabung Kelompok yang Ada / Belum Ada Kelompok</option>
+                            <option value="Lainnya">Lainnya (Tulis Manual)</option>
+                        </select>
+                        <input type="text" id="manualKelompokInput" placeholder="Tuliskan nama/opsi kelompok di sini..." class="hidden mt-2 w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-ocean-500">
+                    </div>
+                </div>
+
+                <!-- Info Box Private -->
+                <div id="privateInfoBox" class="hidden bg-sky-50 border border-sky-200 rounded-2xl p-4 text-sky-900 flex items-start gap-3">
+                    <i class="fa-solid fa-circle-info text-ocean-500 text-xl mt-0.5 shrink-0"></i>
+                    <div class="text-xs sm:text-sm">
+                        <strong class="font-semibold block text-sky-950 mb-1">Informasi Program Private / Semi Private:</strong>
+                        Jadwal latihan, durasi, dan jumlah pertemuan untuk program ini akan dikonfirmasi langsung oleh admin via WhatsApp sebelum pembayaran.
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: CATATAN -->
+            <div class="pt-4 border-t border-slate-100">
+                <label class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">Catatan Tambahan <span class="text-slate-400 font-normal">(Opsional)</span></label>
+                <textarea id="catatan" rows="3" placeholder="Contoh: Peserta memiliki riwayat asma ringan, atau catatan khusus lainnya..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-ocean-500 text-sm"></textarea>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <div>
+                <button type="submit" class="w-full py-4 px-6 bg-ocean-500 hover:bg-ocean-600 active:bg-ocean-700 text-white font-bold text-base rounded-2xl shadow-lg shadow-ocean-500/30 transition duration-200 flex items-center justify-center gap-3">
+                    <span>DAFTAR SEKARANG</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- SUCCESS MODAL POPUP -->
+    <div id="successModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative text-center">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Pendaftaran Berhasil!</h3>
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs sm:text-sm text-slate-700 text-left leading-relaxed mb-6">
+                "Terima kasih telah mendaftar Les Renang Aquarif Funswim! Data Anda telah kami terima. Admin akan menghubungi melalui WhatsApp untuk mengonfirmasi program, jadwal, ketersediaan kuota, dan informasi pembayaran. Pendaftaran belum dianggap terkonfirmasi sebelum mendapat persetujuan admin."
+            </div>
+
+            <div class="space-y-3">
+                <a id="btnWhatsApp" href="#" target="_blank" class="w-full py-3.5 px-5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-md flex items-center justify-center gap-2 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>📱 Lanjutkan ke WhatsApp Admin</span>
+                </a>
+                <button onclick="closeModal()" class="w-full py-3 px-5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-xl transition">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // NOMOR WHATSAPP ADMIN
+        const NOMOR_ADMIN_WA = "6281649148180";
+
+        let selectedProgramType = "";
+        let selectedProgramName = "";
+
+        function selectProgram(type, name) {
+            selectedProgramType = type;
+            selectedProgramName = name;
+            document.getElementById('selectedProgram').value = name;
+            document.getElementById('programError').classList.add('hidden');
+
+            // Highlight kartu
+            document.querySelectorAll('.program-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById(`card-${type}`).classList.add('selected');
+
+            // Set visibility sesi & kelompok
+            const groupFields = document.getElementById('groupFields');
+            const privateInfoBox = document.getElementById('privateInfoBox');
+            const sesiSelect = document.getElementById('sesiLatihan');
+            const kelompokSelect = document.getElementById('kelompokLatihan');
+
+            if (type === 'group' || type === 'regular') {
+                groupFields.classList.remove('hidden');
+                privateInfoBox.classList.add('hidden');
+                sesiSelect.required = true;
+                kelompokSelect.required = true;
+            } else {
+                groupFields.classList.add('hidden');
+                privateInfoBox.classList.remove('hidden');
+                sesiSelect.required = false;
+                kelompokSelect.required = false;
+            }
+        }
+
+        function toggleManualSesi(val) {
+            const manualInput = document.getElementById('manualSesiInput');
+            if (val === 'Lainnya') {
+                manualInput.classList.remove('hidden');
+                manualInput.required = true;
+            } else {
+                manualInput.classList.add('hidden');
+                manualInput.required = false;
+            }
+        }
+
+        function toggleManualKelompok(val) {
+            const manualInput = document.getElementById('manualKelompokInput');
+            if (val === 'Lainnya') {
+                manualInput.classList.remove('hidden');
+                manualInput.required = true;
+            } else {
+                manualInput.classList.add('hidden');
+                manualInput.required = false;
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            if (!selectedProgramName) {
+                document.getElementById('programError').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+
+            const namaPeserta = document.getElementById('namaPeserta').value;
+            const usiaPeserta = document.getElementById('usiaPeserta').value;
+            const namaOrangTua = document.getElementById('namaOrangTua').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const kemampuan = document.querySelector('input[name="kemampuan"]:checked').value;
+            const catatan = document.getElementById('catatan').value || '-';
+
+            let sesiFinal = "Dikonfirmasi oleh Admin";
+            let kelompokFinal = "Dikonfirmasi oleh Admin";
+
+            if (selectedProgramType === 'group' || selectedProgramType === 'regular') {
+                const sesiVal = document.getElementById('sesiLatihan').value;
+                sesiFinal = (sesiVal === 'Lainnya') ? document.getElementById('manualSesiInput').value : sesiVal;
+
+                const kelVal = document.getElementById('kelompokLatihan').value;
+                kelompokFinal = (kelVal === 'Lainnya') ? document.getElementById('manualKelompokInput').value : kelVal;
+            }
+
+            // Format Pesan WhatsApp
+            const textWA = `*HALO ADMIN, PENDAFTARAN LES RENANG AQUARIF FUNSWIM*%0A%0A` +
+                `*Program:* ${selectedProgramName}%0A` +
+                `*Nama Peserta:* ${namaPeserta}%0A` +
+                `*Usia Peserta:* ${usiaPeserta}%0A` +
+                `*Nama Orang Tua/Wali:* ${namaOrangTua}%0A` +
+                `*No. WhatsApp:* ${whatsapp}%0A` +
+                `*Kemampuan Berenang:* ${kemampuan}%0A` +
+                `*Pilihan Sesi/Hari:* ${sesiFinal}%0A` +
+                `*Pilihan Kelompok:* ${kelompokFinal}%0A` +
+                `*Catatan:* ${catatan}%0A%0A` +
+                `Mohon konfirmasi pendaftaran ini. Terima kasih!`;
+
+            document.getElementById('btnWhatsApp').href = `https://wa.me/${NOMOR_ADMIN_WA}?text=${textWA}`;
+            document.getElementById('successModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
